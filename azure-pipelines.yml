@@ -32,6 +32,6 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'mashala'
     slotName: 'dev'
-    package: '$(Build.ArtifactStagingDirectory)/*.zip'
+    # package: '$(Build.ArtifactStagingDirectory)/*.zip'
     # package: '$(System.DefaultWorkingDirectory)/**/*.zip'
   
