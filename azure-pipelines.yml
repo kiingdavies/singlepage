@@ -19,7 +19,7 @@ steps:
   displayName: 'Run a multi-line script'
 
 - task: PublishBuildArtifacts@1
-inputs:
+  inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
@@ -32,5 +32,5 @@ inputs:
     deployToSlotOrASE: true
     resourceGroupName: 'mashala'
     slotName: 'dev'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/*.zip'
+    # package: '$(System.DefaultWorkingDirectory)/**/*.zip'
   
