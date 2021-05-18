@@ -18,20 +18,12 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+    
 - task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'Visual Studio Enterprise Subscription(8fe01723-c68a-4842-b6b6-341e5e14be9f)'
-    appType: 'webAppLinux'
-    appName: 'dej-mashala'
-    deployToSlotOrASE: true
-    resourceGroupName: 'mashala'
-    slotName: 'dev'
-    # package: '$(Build.ArtifactStagingDirectory)/*.zip'
-    # package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-  
