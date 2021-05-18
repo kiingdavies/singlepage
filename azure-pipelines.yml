@@ -18,6 +18,11 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: PublishBuildArtifacts@1
+inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 - task: AzureWebApp@1
   inputs:
@@ -27,6 +32,5 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'mashala'
     slotName: 'dev'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/*.zip'
   
-- task: PublishBuildArtifacts@1
